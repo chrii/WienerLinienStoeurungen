@@ -22,7 +22,7 @@ val interferenceTitle:String?,
 val interferenceDescription:String?,
 
 @SerializedName("time")
-val downtime: DowntimeDto?,
+val downTime: DowntimeDto?,
 
 @SerializedName("relatedLines")
 val relatedLines: List<String>?,

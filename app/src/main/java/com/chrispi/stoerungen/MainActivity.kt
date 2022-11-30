@@ -14,6 +14,7 @@ import com.chrispi.stoerungen.ui.menus.app_drawer_menu.AppDrawerMenu
 import com.chrispi.stoerungen.ui.menus.app_drawer_menu.AppDrawerScaffold
 import com.chrispi.stoerungen.ui.menus.app_drawer_menu.menuItemList
 import com.chrispi.stoerungen.ui.theme.WienerLinienStörungenTheme
+import com.chrispi.stoerungen.ui.traffic_interference_long.InterferenceListLongPage
 import com.chrispi.stoerungen.ui.traffic_interference_short.InterferenceListShortPage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,31 +31,32 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             WienerLinienStörungenTheme {
-                NavHost(
-                    navController = navController,
-                    startDestination = Routes.ElevatorInformationListRoute.route
+                AppDrawerScaffold(
+                    drawerMenu = drawerMenu,
+                    navigation = navController
                 ) {
-                    composable(Routes.ElevatorInformationListRoute.route) {
-                        val viewModel: MainViewModel by viewModels()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Routes.ElevatorInformationListRoute.route
+                    ) {
+                        composable(Routes.ElevatorInformationListRoute.route) {
+                            val viewModel: MainViewModel by viewModels()
 
-                        AppDrawerScaffold(
-                            appBarHeader = stringResource(R.string.elevation_header),
-                            drawerMenu = drawerMenu,
-                            navigation = navController
-                        ) {
                             ElevatorInformationListPage(viewModel)
                         }
-                    }
 
-                    composable(Routes.InterferenceShortListRoute.route) {
-                        val viewModel: MainViewModel by viewModels()
+                        composable(Routes.InterferenceShortListRoute.route) {
+                            val viewModel: MainViewModel by viewModels()
 
-                        AppDrawerScaffold(
-                            appBarHeader = stringResource(R.string.interference_short_header),
-                            drawerMenu = drawerMenu,
-                            navigation = navController
-                        ) {
                             InterferenceListShortPage(viewModel)
+//                        }
+                        }
+
+                        composable(Routes.InterferenceLongListRoute.route) {
+                            val viewModel: MainViewModel by viewModels()
+
+                            InterferenceListLongPage(viewModel)
+//                        }
                         }
                     }
                 }

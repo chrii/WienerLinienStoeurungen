@@ -1,5 +1,6 @@
 package com.chrispi.stoerungen.repositories.implementation
 
+import android.util.Log
 import com.chrispi.stoerungen.misc.DataState
 import com.chrispi.stoerungen.models.TrafficInterference
 import com.chrispi.stoerungen.network.dto.getCategoryTitleList
@@ -19,6 +20,7 @@ class InterferenceRepositoryImpl(
                 val information = response.body()
                     ?: throw Exception("Response Body is null - getInformation()")
                 if (information.data != null) {
+                    Log.d("getInformation", information.data.getInterferenceLongList().toString())
                     val interferenceData = TrafficInterference(
                         categories = information.data.getCategoryTitleList(),
                         elevatorInformation = information.data.getElevatorInformationList(),

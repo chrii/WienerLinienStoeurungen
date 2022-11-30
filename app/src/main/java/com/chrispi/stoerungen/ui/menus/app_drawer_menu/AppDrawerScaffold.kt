@@ -15,14 +15,14 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppDrawerScaffold(
-    appBarHeader: String,
     drawerMenu: AppDrawerMenu,
     navigation: NavController,
     content: @Composable () -> Unit
 ) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
-    val selectedItem by remember { mutableStateOf(0) }
+    var selectedItem by remember { mutableStateOf(0) }
+    var header by remember { mutableStateOf(drawerMenu.menu.first().label) }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -35,6 +35,8 @@ fun AppDrawerScaffold(
                         selected = index == selectedItem,
                     ) {
                         scope.launch {
+                            header = drawerMenu.menu[index].label
+                            selectedItem = index
                             drawerState.close()
                             navigation.navigate(item.route)
                         }
@@ -65,7 +67,7 @@ fun AppDrawerScaffold(
                     )
                 }
                 Text(
-                    text = appBarHeader,
+                    text = stringResource(header),
                     style = MaterialTheme.typography.headlineSmall
                 )
             }

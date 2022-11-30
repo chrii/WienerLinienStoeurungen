@@ -74,7 +74,7 @@ data class InterferenceDataDto(
                     trafficInfoListName = it["name"] as String?,
                     interferenceTitle = it["title"] as String?,
                     interferenceDescription = it["description"] as String?,
-                    downtime = downTime?.let { safeDowntime ->
+                    downTime = downTime?.let { safeDowntime ->
                         DowntimeDto.getDtoFromMap(safeDowntime)
                     },
                     relatedLines = it["relatedLines"] as List<String>?,
@@ -146,13 +146,13 @@ fun InterferenceDataDto.getInterferenceShortList(): List<TrafficInterferenceShor
 }
 
 fun InterferenceDataDto.getInterferenceLongList(): List<TrafficInterferenceLong> {
-    val elevatorObject =
-        trafficInformation?.filter { (it["refTrafficInfoCategoryId"] as Double).toInt() == 2 }
+    val interferenceLong =
+        trafficInformation?.filter { (it["refTrafficInfoCategoryId"] as Double).toInt() == 3 }
             ?: listOf()
-    if (elevatorObject.isNotEmpty()) {
+    if (interferenceLong.isNotEmpty()) {
         val interferenceDtoList =
-            InterferenceDataDto.getInfoCategoryInterferenceShort(elevatorObject)
-        val category = trafficInfoCategories?.find { it.id == 2 }?.categoryTitle
+            InterferenceDataDto.getInfoCategoryInterferenceLong(interferenceLong)
+        val category = trafficInfoCategories?.find { it.id == 3 }?.categoryTitle
             ?: "No Category Title"
         return interferenceDtoList.map { interferenceDto ->
             TrafficInterferenceLong(
@@ -162,7 +162,7 @@ fun InterferenceDataDto.getInterferenceLongList(): List<TrafficInterferenceLong>
                 interferenceTitle = interferenceDto.interferenceTitle ?: "No Interference Title",
                 interferenceDescription = interferenceDto.interferenceDescription
                     ?: "No Station Description",
-                downtime = interferenceDto.downTime?.fromDto(),
+                downTime = interferenceDto.downTime?.fromDto(),
                 relatedLines = interferenceDto.relatedLines ?: listOf(),
                 relatedStopsAsRblNumber = interferenceDto.relatedStopsAsRblNumber ?: listOf(),
                 priority = interferenceDto.priority ?: "No priority found",

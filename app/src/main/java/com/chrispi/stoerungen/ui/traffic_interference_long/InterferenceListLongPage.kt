@@ -1,18 +1,14 @@
-package com.chrispi.stoerungen.ui.traffic_interference_short
+package com.chrispi.stoerungen.ui.traffic_interference_long
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -25,14 +21,14 @@ import com.chrispi.stoerungen.ui.composables.LoadingDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InterferenceListShortPage(
+fun InterferenceListLongPage(
     viewModel: MainViewModel
 ) {
     val lifecycle = LocalLifecycleOwner.current.lifecycle
-    Log.d("List", viewModel.elevatorData.value.toString())
-    if (viewModel.trafficInterferenceShort.value.isNotEmpty()) {
+//    Log.d("List", viewModel.trafficInterferenceLong.value.toString())
+    if (viewModel.trafficInterferenceLong.value.isNotEmpty()) {
         LazyColumn {
-            items(viewModel.trafficInterferenceShort.value) { item ->
+            items(viewModel.trafficInterferenceLong.value) { item ->
                 Column {
                     ListItem(
                         headlineText = {
@@ -45,10 +41,8 @@ fun InterferenceListShortPage(
                                 }
                             }
                         },
-                        supportingText = { EllipseDescription(item.interferenceDescription) },
                         shadowElevation = 50.dp
                     )
-//                    Divider()
                 }
             }
         }

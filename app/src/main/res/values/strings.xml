@@ -17,5 +17,8 @@
     <string name="elevation_header">Aufzugsstörungen</string>
 
     <!-- Interference Short -->
-    <string name="interference_short_header">Kurze Störungen</string>
+    <string name="interference_short_header">Vorrübergehende Störungen</string>
+
+    <!-- Interference Long -->
+    <string name="interference_long_header">Langfristige Störungen</string>
 </resources>

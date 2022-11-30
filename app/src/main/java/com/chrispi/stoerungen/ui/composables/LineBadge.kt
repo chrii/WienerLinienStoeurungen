@@ -17,12 +17,12 @@ import androidx.compose.ui.unit.dp
 fun LineBadge(line: String) {
     when {
         line.contains('U') -> {
-            val color = when (line) {
-                "U1" -> 0xFFE4131D
-                "U2" -> 0xFFA349A4
-                "U3" -> 0xFFFF7F27
-                "U4" -> 0xFF22B04C
-                "U5" -> 0xFF01BFBF
+            val color = when {
+                line.contains("1") -> 0xFFE4131D
+                line.contains("2") -> 0xFFA349A4
+                line.contains("3") -> 0xFFFF7F27
+                line.contains("4") -> 0xFF22B04C
+                line.contains("5") -> 0xFF01BFBF
                 else -> 0xFFA76745
             }
             Box(

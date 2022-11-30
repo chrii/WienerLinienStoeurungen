@@ -7,7 +7,7 @@ data class TrafficInterferenceLong(
     val publicTransportationOwner: String,
     val interferenceTitle: String,
     val interferenceDescription: String,
-    val downtime: Downtime?,
+    val downTime: Downtime?,
     val relatedLines: List<String>,
     val relatedStopsAsRblNumber: List<Int>
 )
