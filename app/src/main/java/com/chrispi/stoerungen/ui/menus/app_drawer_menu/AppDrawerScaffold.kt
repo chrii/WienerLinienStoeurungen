@@ -54,7 +54,8 @@ fun AppDrawerScaffold(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Start,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+
             ) {
                 IconButton(
                     colors = IconButtonDefaults.iconButtonColors(),
