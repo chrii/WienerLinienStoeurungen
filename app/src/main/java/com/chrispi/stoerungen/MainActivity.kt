@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -13,6 +14,7 @@ import com.chrispi.stoerungen.ui.menus.app_drawer_menu.AppDrawerMenu
 import com.chrispi.stoerungen.ui.menus.app_drawer_menu.AppDrawerScaffold
 import com.chrispi.stoerungen.ui.menus.app_drawer_menu.menuItemList
 import com.chrispi.stoerungen.ui.theme.WienerLinienStörungenTheme
+import com.chrispi.stoerungen.ui.traffic_interference_short.InterferenceListShortPage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,16 +34,27 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = Routes.ElevatorInformationListRoute.route
                 ) {
-
                     composable(Routes.ElevatorInformationListRoute.route) {
                         val viewModel: MainViewModel by viewModels()
 
                         AppDrawerScaffold(
-                            appBarHeader = "Aufzugsstörungen",
+                            appBarHeader = stringResource(R.string.elevation_header),
                             drawerMenu = drawerMenu,
                             navigation = navController
                         ) {
                             ElevatorInformationListPage(viewModel)
+                        }
+                    }
+
+                    composable(Routes.InterferenceShortListRoute.route) {
+                        val viewModel: MainViewModel by viewModels()
+
+                        AppDrawerScaffold(
+                            appBarHeader = stringResource(R.string.interference_short_header),
+                            drawerMenu = drawerMenu,
+                            navigation = navController
+                        ) {
+                            InterferenceListShortPage(viewModel)
                         }
                     }
                 }
