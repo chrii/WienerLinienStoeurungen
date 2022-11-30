@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Wiener Linien Störungen</string>
+    <string name="loading_dialog_text">Hole Informationen</string>
+
+    <!-- App Drawer Menu -->
+    <string name="elevation_information">Aufzugsinformation</string>
+    <string name="elevation_information_description">Aufzugsinformation</string>
+    <string name="interference_short">Kurzfristige Störungen</string>
+    <string name="interference_short_description">Kurzfristige Störungen</string>
+    <string name="interference_long">Langfristige Störungen</string>
+    <string name="interference_long_description">Langfristige Störungen</string>
 </resources>
